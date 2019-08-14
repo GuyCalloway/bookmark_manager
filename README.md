@@ -5,6 +5,10 @@
 1) As a user
  I would like to see a list of Bookmarks.
 
+ 2) As a user
+ I would like to add new bookmarks
+
+
 #Domain Model
 ```
 Client      | Controller    |   Model           | View
@@ -22,9 +26,9 @@ Client      | Controller    |   Model           | View
 
 ```
 
-            ```
 
             **To set up the database**
+
 
             Connect to `psql` and create the `bookmark_manager` database and 'bookmark_manager_test' databases:
 
@@ -33,6 +37,5 @@ Client      | Controller    |   Model           | View
 
             ### To run the Bookmark Manager app:
 
-            ```
+
             rackup -p number(9292 automatically)
-            ```
