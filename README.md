@@ -6,6 +6,7 @@
  I would like to see a list of Bookmarks.
 
 #Domain Model
+```
 Client      | Controller    |   Model           | View
         gets request-->
         get 'bookmarks'----->Controller ------> /lib/Bookmark
@@ -18,7 +19,8 @@ Client      | Controller    |   Model           | View
          :description
             |               |     [Bookmarks ]  |       
 
-            bundle
+
+```
 
             ```
 
