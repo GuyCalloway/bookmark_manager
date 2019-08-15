@@ -8,6 +8,8 @@
  2) As a user
  I would like to add new bookmarks
 
+3) As a user
+I would like to delete new bookmarks
 
 #Domain Model
 ```
