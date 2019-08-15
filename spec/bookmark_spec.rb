@@ -19,6 +19,8 @@ describe '.create' do
     connection = PG.connect(dbname: 'bookmark_manager_test')
     bookmark = Bookmark.create(url: 'http://www.testbookmark.com', title: "test")
     bookmarks = Bookmark.all
+
+    
     expect(bookmarks.first.url).to eq 'http://www.testbookmark.com'
     expect(bookmarks.first.title).to eq 'test'
   end

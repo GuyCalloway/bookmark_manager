@@ -32,6 +32,7 @@ class Bookmark
   def self.create(url:, title:)
     #create self. select_env put if else into there and call
     if ENV['ENVIRONMENT'] == 'test'
+      p "Hello1"
       connection = PG.connect(dbname: 'bookmark_manager_test')
     else
       connection = PG.connect(dbname: 'bookmark_manager')
