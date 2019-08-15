@@ -2,7 +2,7 @@ require 'pg'
 
 class Bookmark
 
-   attr_reader :title, :url
+   attr_reader :title, :url, :id
 
   def initialize(id:, url:, title:)
     @title = title
@@ -12,11 +12,8 @@ class Bookmark
 
   def self.all
     #return false unless is_url?(url)
-    if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
+    connection = select_environment
+
     result = connection.exec('SELECT * FROM bookmarks;')
 
     result.map do |bookmark|
@@ -30,13 +27,8 @@ class Bookmark
   end
 
   def self.create(url:, title:)
-    #create self. select_env put if else into there and call
-    if ENV['ENVIRONMENT'] == 'test'
-      p "Hello1"
-      connection = PG.connect(dbname: 'bookmark_manager_test')
-    else
-      connection = PG.connect(dbname: 'bookmark_manager')
-    end
+    
+    connection = select_environment
 
     result = connection.exec("INSERT INTO bookmarks (url, title) VALUES('#{url}', '#{title}') RETURNING id, title, url;")
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
@@ -44,9 +36,9 @@ class Bookmark
 
   def self.select_environment
     if ENV['ENVIRONMENT'] == 'test'
-      connection = PG.connect(dbname: 'bookmark_manager_test')
+      PG.connect(dbname: 'bookmark_manager_test')
     else
-      connection = PG.connect(dbname: 'bookmark_manager')
+      PG.connect(dbname: 'bookmark_manager')
     end
   end
 
